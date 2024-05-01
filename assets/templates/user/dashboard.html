@@ -1,0 +1,485 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Medical Hearing Hospital </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'userstatic/assets/img/favicon.ico' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- CSS here -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link href="{% static 'userstatic/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animated-headline.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/style.css' %}">
+    <style>
+        <style> :root {
+            --red: hsl(0, 78%, 62%);
+            --cyan: hsl(180, 62%, 55%);
+            --orange: hsl(34, 97%, 64%);
+            --blue: hsl(212, 86%, 64%);
+            --varyDarkBlue: hsl(234, 12%, 34%);
+            --grayishBlue: hsl(229, 6%, 66%);
+            --veryLightGray: hsl(0, 0%, 98%);
+            --weight1: 200;
+            --weight2: 400;
+            --weight3: 600;
+        }
+
+        body {
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--veryLightGray);
+        }
+
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+
+        h1:first-of-type {
+            font-weight: var(--weight1);
+            color: var(--varyDarkBlue);
+
+        }
+
+        .hr-style::after {
+            content: "";
+            display: block;
+            border: 1px solid #000; /* Adjust the border properties as needed */
+            margin: 10px 0; /* Adjust the margin as needed */
+        }
+
+        h1:last-of-type {
+            color: var(--varyDarkBlue);
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .header {
+            text-align: center;
+            line-height: 0.8;
+            margin-bottom: 50px;
+            margin-top: 100px;
+        }
+
+        .header p {
+            margin: 0 auto;
+            line-height: 2;
+            color: var(--grayishBlue);
+        }
+
+
+        .box p {
+            color: var(--grayishBlue);
+        }
+
+        .box {
+            border-radius: 5px;
+            box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+            padding: 30px;
+            margin: 20px;
+        }
+
+        img {
+            float: right;
+        }
+
+        @media (max-width: 450px) {
+            .box {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 950px) and (min-width: 450px) {
+            .box {
+                text-align: center;
+                height: 180px;
+            }
+        }
+
+        .cyan {
+            border-top: 3px solid var(--cyan);
+        }
+
+        .red {
+            border-top: 3px solid var(--red);
+        }
+
+        .blue {
+            border-top: 3px solid var(--blue);
+        }
+
+        .orange {
+            border-top: 3px solid var(--orange);
+        }
+
+        h2 {
+            color: var(--varyDarkBlue);
+            font-weight: var(--weight3);
+        }
+
+
+        @media (min-width: 950px) {
+            .row1-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .row2-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .box-down {
+                position: relative;
+                top: 150px;
+            }
+
+            .box {
+                width: 20%;
+
+            }
+
+            .header p {
+                width: 30%;
+            }
+
+        }
+
+        /* Apply shadow to all boxes */
+        .box {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            /* Adjust the values as needed */
+        }
+
+        /* Apply shadow to the header */
+        .header {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            /* Adjust the values as needed */
+        }
+    </style>
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'userstatic/assets/img/logo/loder.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!--? Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="{% url "dashboard" %}"><img src="{% static 'userstatic/assets/img/logo.png' %}" alt="" style="height:75px; width:200px;"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{% url "dashboard" %}">Dashboard</a></li>
+                                            <li><a href="{% url "myprofile" %}">My Profile</a></li>
+                                            <li><a href="{% url "detection" %}">Hearing Loss Detection</a></li>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                    <a href="{% url 'userlogout' %}" class="btn header-btn">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <!--? Hero Start -->
+    <div class="slider-area2" style="height: 250px; text-align: center;">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                            <h2 style="padding-bottom: 170px;">Dashboard</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shadow">
+        <div class="text-center shadow p-3 mb-5 bg-white rounded">
+            <h1>User Activity Summary</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                 Integer tincidunt ante ut aliquam sodales. Nunc ex dui, hendrerit ut ex in</p>
+        </div>
+        
+        <div class="row1-container">
+            <div class="box box-down cyan">
+                <h2 class="hr-style">No.Of Times Logged In </h2>
+                <p>Login Frequency - {{la.No_Of_Times_Login}}</p>
+                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+            </div>
+    
+            <div class="box red" id="date-time">
+                <h2>Date And Time</h2>
+                <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+            </div>
+    
+            <div class="box box-down blue">
+                <h2 class="hr-style">Last Login Details</h2>
+                <p>Previous Access Information -{{la.Last_Login_Date}} {{la.Last_Login_Time}}</p>
+                <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+            </div>
+        </div>
+        <div class="row2-container">
+            <div class="box orange">
+                <h2 class="hr-style">User Details</h2>
+                <p>User-Name : {{la.user_username}} Contact: {{la.user_contact}}</p>
+                <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt="">
+            </div>
+        </div>
+    </div>    
+
+
+    <footer>
+        <!--? Footer Start-->
+        <div class="footer-area section-bg"
+            data-background="{% static 'userstatic/assets/img/gallery/footer_bg.jpg' %}">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="{% url "dashboard" %}"><img src="{% static 'userstatic/assets/img/logo.png' %}" alt="" style="height:75px; width:200px;"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>About Us</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1">The Hearing Institute of Excellence: Pioneering Care for Your
+                                            Auditory Wellness.</p>
+                                        <p class="info1">Open Arms Audiology: Where All Are Welcome to Experience Better
+                                            Hearing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-number mb-50">
+                                    <h4><span>+91</span>8555887986</h4>
+                                    <p>Codebook@gmail.com</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank"
+                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                            <input type="email" name="EMAIL" id="newsletter-form-email"
+                                                placeholder=" Email Address " class="placeholder hide-on-focus"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Your email address'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm">
+                                                    Send
+                                                </button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://www.codebook.in/" target="_blank">Codebook.in</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="{% static 'userstatic/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{% static 'userstatic/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/bootstrap.min.js' %}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{% static 'userstatic/assets/js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{% static 'userstatic/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/slick.min.js' %}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{% static 'userstatic/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/animated.headline.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.magnific-popup.js' %}"></script>
+
+    <!-- Date Picker -->
+    <script src="{% static 'userstatic/assets/js/gijgo.min.js' %}"></script>
+    <!-- Nice-select, sticky -->
+    <script src="{% static 'userstatic/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.sticky.js' %}"></script>
+
+    <!-- counter , waypoint -->
+    <script src="{% static 'userstatic/assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.countdown.min.js' %}"></script>
+    <!-- contact js -->
+    <script src="{% static 'userstatic/assets/js/contact.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.form.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="{% static 'userstatic/assets/js/plugins.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/main.js' %}"></script>
+
+    <script>
+        // Function to update date and time
+        function updateDateTime() {
+            var dateTimeElement = document.getElementById("date-time");
+            var now = new Date();
+            var dateTimeString = now.toLocaleString(); // Format the date and time as a string
+    
+            dateTimeElement.innerHTML = `
+                <h2 class="hr-style"> Date And Time</h2>
+                <p>Today's Date and Time - ${dateTimeString}</p>
+                <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+            `;
+        }
+    
+        // Call the function initially to set the initial date and time
+        updateDateTime();
+    
+        // Set an interval to update the date and time every second (1000 milliseconds)
+        setInterval(updateDateTime, 1000);
+    </script>
+    
+</body>
+
+</html>

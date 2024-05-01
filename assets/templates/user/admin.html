@@ -1,0 +1,490 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Medical Hearing Hospital </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'userstatic/assets/img/favicon.ico' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- CSS here -->
+	<link href="{% static 'userstatic/assets/css/bootstrap.min.css' %}" rel="stylesheet" >
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animated-headline.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/fontawesome-all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/style.css' %}">
+
+    <style>
+        #harsha {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .box-form {
+            display: flex;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px 6px rgba(100, 102, 211, 0.21);
+        }
+
+        .left {
+            flex: 1;
+            background-image: url("https://i.pinimg.com/736x/5d/73/ea/5d73eaabb25e3805de1f8cdea7df4a42--tumblr-backgrounds-iphone-phone-wallpapers-iphone-wallaper-tumblr.jpg");
+            background-size: cover;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(198, 133, 133, 0.68);
+            padding: 30px;
+            box-sizing: border-box;
+            color: #fff;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .right {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .right h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .right form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .right .inputs input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #B0B3B9;
+            transition: border-color 0.3s ease;
+        }
+
+        .right .inputs input:focus {
+            border-color: #6466d3;
+        }
+
+        .right .remember-me--forget-password {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .right .remember-me--forget-password p {
+            font-size: 14px;
+            color: #B0B3B9;
+            margin: 0;
+        }
+
+        .right button {
+            background: #6466d3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .right button:hover {
+            background: #4b4ec4;
+        }
+
+        label {
+            display: block;
+            position: relative;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+
+        label::before {
+            content: '\f00c';
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #6466d3;
+            transition: color 0.3s ease;
+        }
+
+        label:hover::before {
+            color: #4b4ec4;
+        }
+
+        label span.text-checkbox {
+            display: inline-block;
+            height: auto;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s linear;
+        }
+
+        label input[type="checkbox"] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+        <!-- ? Preloader Start -->
+        <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="preloader-circle"></div>
+                    <div class="preloader-img pere-text">
+                        <img src="{% static 'userstatic/assets/img/logo/loder.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Preloader Start -->
+    <header>
+        <!--? Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="{% url "index" %}"><img src="{% static 'userstatic/assets/img/logo.png' %}" alt="" style="height:75px; width:200px;"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{% url "index" %}">Home</a></li>
+                                            <li><a href="{% url "about" %}">About</a></li>
+                                            <li><a href="{% url "contact" %}">Contact Us</a></li>
+                                            <li><a href="{% url "admin" %}">Admin Login</a></li>
+                                            <li><a href="{% url "login" %}">User Login</a></li>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                    <a href="{% url "register" %}" class="btn header-btn">Register</a>
+                                </div>
+                            </div>
+                        </div>   
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header><br><br><br><br><br>
+    <style>
+        .my-div {
+            background: url('https://img.freepik.com/premium-vector/male-doctor-standing_18591-76414.jpg?size=626&ext=jpg&ga=GA1.2.967416218.1689508738&semt=ais');
+            width: 100%;
+            height: 50%;
+        }
+    </style>
+    <div class="my-div">
+        <div class="container" id="harsha">
+            <div class="box-form">
+                <div class="left">
+
+                    <div class="overlay">
+                        <h1 style="color: aliceblue;">Welcome To Medical</h1>
+                        <p style="color: aliceblue;">The Hearing Institute of Excellence: Pioneering Care for Your
+                            Auditory Wellness.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="inputs">
+                            <h1 class="big" style="text-align: center;">Admin Login</h1>
+
+                            <input name = "emailaddress" type="email" placeholder="Email">
+                            <input name = "emailpassword" type="password" placeholder="Password">
+                        </div>
+                        <div class="remember-me--forget-password">
+                            <label>
+                                <input type="checkbox" name="item" checked>
+                                <span class="text-checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remember me</span>
+                            </label>
+                            <p>Forgot password?</p>
+                        </div>
+                        <style>
+                            a.button {
+                                display: inline-block;
+                                padding: 10px 20px;
+                                font-size: 16px;
+                                text-align: center;
+                                text-decoration: none;
+                                background-color: #007bff;
+                                color: #ffffff;
+                                border-radius: 5px;
+                                border: none;
+                                cursor: pointer;
+                            }
+    
+                            a.button:hover {
+                                background-color: #0056b3;
+                            }
+                        </style>
+                        <button  class="button" type="submit">Login</button>                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-area section-padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-10">
+                    <div class="about-caption mb-50">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle section-tittle2 mb-35">
+                            <span>About Our Company</span>
+                            <h2>Welcome To Our Hospital</h2>
+                        </div>
+                        <p>There arge many variations ohf pacgssages of sorem gpsum ilable, but the majority have suffered alteration in some form, by ected humour, or randomised words whi.</p>
+                        <div class="about-btn1 mb-30">
+                            <a href="{% url "about" %}" class="btn about-btn">Find Doctors .<i class="ti-arrow-right"></i></a>
+                        </div>
+                        <div class="about-btn1 mb-30">
+                            <a href="{% url "about" %}" class="btn about-btn2">Appointment <i class="ti-arrow-right"></i></a>
+                        </div>
+                        <div class="about-btn1 mb-30">
+                            <a href="{% url "about" %}" class="btn about-btn2">Emargency 1 <i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <!-- about-img -->
+                    <div class="about-img ">
+                        <div class="about-font-img d-none d-lg-block">
+                            <img src="{% static 'userstatic/assets/img/gallery/about2.png' %}" alt="">
+                        </div>
+                        <div class="about-back-img ">
+                            <img src="{% static 'userstatic/assets/img/gallery/about1.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <!--? Footer Start-->
+        <div class="footer-area section-bg" data-background="{% static 'userstatic/assets/img/gallery/footer_bg.jpg' %}">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="{% url "index" %}"><img src="{% static 'userstatic/assets/img/logo.png' %}" alt="" style="height:75px; width:200px;"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>About Us</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1">The Hearing Institute of Excellence: Pioneering Care for Your
+                                            Auditory Wellness.</p>
+                                        <p class="info1">Open Arms Audiology: Where All Are Welcome to Experience Better
+                                            Hearing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-number mb-50">
+                                    <h4><span>+91</span>8555887986</h4>
+                                    <p>Codebook@gmail.com</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank"
+                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                            <input type="email" name="EMAIL" id="newsletter-form-email"
+                                                placeholder=" Email Address " class="placeholder hide-on-focus"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Your email address'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm">
+                                                    Send
+                                                </button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://www.codebook.in/" target="_blank">Codebook.in</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>         
+        </footer>
+        <!-- Scroll Up -->
+        <div id="back-top">
+            <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+        </div>
+
+         <!-- JS here -->
+
+    <script src="{% static 'userstatic/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{% static 'userstatic/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/bootstrap.min.js' %}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{% static 'userstatic/assets/js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{% static 'userstatic/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/slick.min.js' %}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{% static 'userstatic/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/animated.headline.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.magnific-popup.js' %}"></script>
+
+    <!-- Date Picker -->
+    <script src="{% static 'userstatic/assets/js/gijgo.min.js' %}"></script>
+    <!-- Nice-select, sticky -->
+    <script src="{% static 'userstatic/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.sticky.js' %}"></script>
+    
+    <!-- counter , waypoint -->
+    <script src="{% static 'userstatic/assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.countdown.min.js' %}"></script>
+    <!-- contact js -->
+    <script src="{% static 'userstatic/assets/js/contact.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.form.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="{% static 'userstatic/assets/js/plugins.js' %}"></script>
+    <script src="{% static 'userstatic/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

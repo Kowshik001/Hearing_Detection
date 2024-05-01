@@ -1,0 +1,420 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Medical Hearing Hospital </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'userstatic/assets/img/favicon.ico' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- CSS here -->
+	<link href="{% static 'userstatic/assets/css/bootstrap.min.css' %}" rel="stylesheet" >
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'userstatic/assets/css/animated-headline.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/fontawesome-all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'userstatic/assets/css/style.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .card {
+            width: 100%;
+            height: auto;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-body {
+            margin: 1rem;
+        }
+        
+        h6, p {
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .col-md-6, .col-lg-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'userstatic/assets/img/logo/loder.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!--? Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="{% url "dashboard" %}"><img src="{% static 'userstatic/assets/img/logo.png' %}" alt="" style="height:75px; width:200px;"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{% url "dashboard" %}">Dashboard</a></li>
+                                            <li><a href="{% url "myprofile" %}">My Profile</a></li>
+                                            <li><a href="{% url "detection" %}">Hearing Loss Detection</a></li>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <style>
+                                    .header-btn {
+                                        font-size: 15px; /* Adjust the font size as needed */
+                                        background-color: #007bff; /* Change the background color to make it beautiful */
+                                        color: #ffffff; /* Set the text color to make it visible on the background */
+                                        border: none;
+                                        padding: 10px 20px; /* Adjust the padding as needed */
+                                        border-radius: 5px; /* Optional: Add rounded corners to the button */
+                                        text-decoration: none; /* Remove underline from link */
+                                    }
+                                </style>
+                                
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                    <a href="{% url 'userlogout' %}" class="btn header-btn">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <style>
+        .col-md-12.text-center h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 36px;
+            color: #007bff; /* Bootstrap primary color */
+            margin-bottom: 20px;
+            font-weight: bold; /* Make the heading bold */
+            text-transform: uppercase; /* Convert text to uppercase */
+            background-color: #f8f9fa; /* Add a light background */
+            padding: 10px; /* Add some padding */
+            border-radius: 10px; /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {% if res == 0 %}
+                <h3 class="text-primary">Hearing Loss Not Detected</h3>
+                {% else %}
+                <h3 class="text-danger">Hearing Loss Detected</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <div class="d-flex ">
+        <div class="col-7">
+            <p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 40px; margin-top:100px;">Predict Graph </p>
+            <canvas id="myChart" style="width:100%;max-width:600px;" class="m-auto mb-5"></canvas>
+            <script>
+                var xValues = ["Accuracy", "Recall", "Precision", "F1_Score"];
+                var yValues = [{{accuracy}}, {{recall}}, {{precession}}, {{f1}},0];
+                var transparentColor = "rgba(185, 39, 61, 0.3)"; // Adjust the alpha (4th value) for transparency
+                var barColors = [
+                "rgba(185, 29, 71, 0.5)",
+                "rgba(0, 171, 169, 0.5)",
+                "rgba(43, 87, 151, 0.5)",
+                "rgba(30, 113, 69, 0.5)",
+                ];
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                });
+            </script>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 40px; margin-top:50px;">Gradient Boost Algorithm</p><hr>
+                <p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 40px; ">Predict Percentage </p>
+                <br><h2>&nbsp;&nbsp;&nbsp;Names&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Percentage<h2><hr>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-4">
+                            <h4>Accuracy:</h4>
+                            <p>{{accuracy}}%</p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h4>Recall:</h4>
+                            <p>{{recall}}%</p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h4>Precision:</h4>
+                            <p>{{precession}}%</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h4>F1 Score:</h4>
+                            <p>{{f1}}%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+    </div><br><br>
+ <footer>
+        <!--? Footer Start-->
+        <div class="footer-area section-bg" data-background="{% static 'userstatic/assets/img/gallery/footer_bg.jpg' %}">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="{% url "dashboard" %}"><img src="{% static 'userstatic/assets/img/logo/logo2_footer.png' %}" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>About Us</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1">The Hearing Institute of Excellence: Pioneering Care for Your
+                                            Auditory Wellness.</p>
+                                        <p class="info1">Open Arms Audiology: Where All Are Welcome to Experience Better
+                                            Hearing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-number mb-50">
+                                    <h4><span>+91</span>8555887986</h4>
+                                    <p>Codebook@gmail.com</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank"
+                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                            <input type="email" name="EMAIL" id="newsletter-form-email"
+                                                placeholder=" Email Address " class="placeholder hide-on-focus"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Your email address'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm">
+                                                    Send
+                                                </button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://www.codebook.in/" target="_blank">Codebook.in</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+ <!-- JS here -->
+
+ <script src="{% static 'userstatic/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+ <!-- Jquery, Popper, Bootstrap -->
+ <script src="{% static 'userstatic/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/popper.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/bootstrap.min.js' %}"></script>
+ <!-- Jquery Mobile Menu -->
+ <script src="{% static 'userstatic/assets/js/jquery.slicknav.min.js' %}"></script>
+
+ <!-- Jquery Slick , Owl-Carousel Plugins -->
+ <script src="{% static 'userstatic/assets/js/owl.carousel.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/slick.min.js' %}"></script>
+ <!-- One Page, Animated-HeadLin -->
+ <script src="{% static 'userstatic/assets/js/wow.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/animated.headline.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.magnific-popup.js' %}"></script>
+
+ <!-- Date Picker -->
+ <script src="{% static 'userstatic/assets/js/gijgo.min.js' %}"></script>
+ <!-- Nice-select, sticky -->
+ <script src="{% static 'userstatic/assets/js/jquery.nice-select.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.sticky.js' %}"></script>
+ 
+ <!-- counter , waypoint -->
+ <script src="{% static 'userstatic/assets/js/jquery.counterup.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/waypoints.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.countdown.min.js' %}"></script>
+ <!-- contact js -->
+ <script src="{% static 'userstatic/assets/js/contact.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.form.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.validate.min.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/mail-script.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+ 
+ <!-- Jquery Plugins, main Jquery -->	
+ <script src="{% static 'userstatic/assets/js/plugins.js' %}"></script>
+ <script src="{% static 'userstatic/assets/js/main.js' %}"></script>
+
+ <script>
+    // Data for the graph
+    var data = {
+        labels: ['Accuracy', 'Recall', 'Precision', 'F1 Score'],
+        datasets: [{
+            label: 'Metrics',
+            data: [0.85, 0.75, 0.80, 0.78],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration options
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 1
+            }
+        }
+    };
+
+    // Get the canvas element
+    var ctx = document.getElementById('metricsChart').getContext('2d');
+
+    // Create the chart
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+</script>
+</body>
+
+</html>

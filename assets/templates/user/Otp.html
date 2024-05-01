@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Page</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .box-form {
+            display: flex;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px 6px rgba(100, 102, 211, 0.21);
+        }
+
+        .left {
+            flex: 1;
+            position: relative;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(198, 133, 133, 0.68);
+            padding: 30px;
+            box-sizing: border-box;
+            color: #fff;
+            text-align: center;
+        }
+
+        .right {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .right h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .right form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .right .inputs input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #B0B3B9;
+            transition: border-color 0.3s ease;
+        }
+
+        .right .inputs input:focus {
+            border-color: #6466d3;
+        }
+
+        .right button {
+            background: #6466d3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .right button:hover {
+            background: #4b4ec4;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <video class="video-background" autoplay muted loop>
+        <source src="https://vod-progressive.akamaized.net/exp=1695827727~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3266%2F16%2F416330739%2F1793468040.mp4~hmac=fc3a38f09b53909b4bd92d433c5a79c09afc9904a038d9f5a6a40d4f61565ce5/vimeo-prod-skyfire-std-us/01/3266/16/416330739/1793468040.mp4?filename=file.mp4" type="video/mp4">
+        <!-- Add more source elements if you have other video formats -->
+    </video>
+
+    <div class="container">
+        <div class="box-form">
+            <div class="left">
+                <div class="overlay">
+                    <h1>Verify Your OTP</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et est sed felis aliquet
+                        sollicitudin</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <h2>Enter OTP</h2>
+                <form method='post' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="inputs">
+                        <input type="text" name='otp' class="form-control" placeholder="Enter OTP" required>
+                        <svg viewBox="0 0 240 1" xmlns="http://www.w3.org/2000/svg">
+                            
+                        </svg>
+                    </div>
+                    <style>
+                        a.button {
+                            display: inline-block;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            text-align: center;
+                            text-decoration: none;
+                            background-color: #007bff;
+                            color: #ffffff;
+                            border-radius: 5px;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        a.button:hover {
+                            background-color: #0056b3;
+                        }
+                    </style>
+                    <button type="submit" class="button">Verify Otp</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function verifyOTP() {
+            const otpEntered = document.getElementById('otp').value;
+            // Simulate OTP verification
+            const otpGenerated = /* You would get the generated OTP from the backend */;
+    
+            if (otpEntered === otpGenerated) {
+                alert('OTP verification successful! You can now proceed with registration.');
+                // Here, you can redirect the user to the next page or handle the registration process
+            } else {
+                alert('OTP verification failed. Please try again.');
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const otpInputs = document.querySelectorAll('.otp-input');
+    
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (event) => {
+                const currentValue = event.target.value;
+                if (currentValue) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                }
+            });
+    
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Backspace' && index > 0 && !input.value) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
